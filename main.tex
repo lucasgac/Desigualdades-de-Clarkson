@@ -1,0 +1,182 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={6.5in, 9.5in}]{geometry}
+\usepackage[portuguese]{babel}
+\usepackage[hidelinks]{hyperref}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{babel,arrows,positioning,chains,matrix,scopes,cd,quotes,calc,decorations.pathmorphing}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{algorithmic}
+\usepackage[portuguese, ruled, lined]{algorithm2e}
+\usepackage{setspace}
+\usepackage[T1]{fontenc}
+\usepackage{biblatex}
+\addbibresource{bib.bib}
+\usepackage{csquotes}
+\usepackage{pythonhighlight}
+\usepackage{algorithmic}
+\usepackage[portuguese, ruled, lined]{algorithm2e}
+
+%quiver
+\tikzset{curve/.style={settings={#1},to path={(\tikztostart)
+    .. controls ($(\tikztostart)!\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
+    and ($(\tikztostart)!1-\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
+    .. (\tikztotarget)\tikztonodes}},
+    settings/.code={\tikzset{quiver/.cd,#1}
+        \def\pv##1{\pgfkeysvalueof{/tikz/quiver/##1}}},
+    quiver/.cd,pos/.initial=0.35,height/.initial=0}
+
+% TikZ arrowhead/tail styles.
+\tikzset{tail reversed/.code={\pgfsetarrowsstart{tikzcd to}}}
+\tikzset{2tail/.code={\pgfsetarrowsstart{Implies[reversed]}}}
+\tikzset{2tail reversed/.code={\pgfsetarrowsstart{Implies}}}
+% TikZ arrow styles.
+\tikzset{no body/.style={/tikz/dash pattern=on 0 off 1mm}}
+
+\newtheorem{definition}{Definição}
+\newtheorem{proposition}[definition]{Proposição}
+\newtheorem{lemma}[definition]{Lema}
+\newtheorem{axiom}[definition]{Axioma}
+\newtheorem{corollary}[definition]{Corolário}
+\newtheorem{theorem}[definition]{Teorema}
+\newtheorem{distribution}[definition]{Distribuição}
+\newtheorem{example}[definition]{Exemplo}
+
+\newcommand{\red}[1]{{\color{red} #1}}
+\newcommand{\blue}[1]{{\color{blue} #1}}
+\DeclareMathOperator{\freeab}{Free_{Ab}}
+
+\DeclareMathOperator{\Top}{Top}
+\DeclareMathOperator{\Ab}{Ab}
+\DeclareMathOperator{\Grp}{Grp}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\module}{Mod}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\chain}{Ch}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\Alt}{Alt}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Exp}{Exp}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\Ricci}{Ricci}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\gyr}{gyr}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\Log}{Log}
+
+\newcommand{\Mod}[1]{$\module_{#1}$}
+\newcommand{\Chain}[1]{$\chain(#1)$}
+
+\newcommand{\openset}[0]{{\phantom{}\subset}{\circ}\phantom{.}}
+
+\def\arrvline{\hfil\kern\arraycolsep\vline\kern-\arraycolsep\hfilneg}
+
+\begin{document}
+\begin{titlepage}
+    \center
+    \textsc{\textbf{\Large Iniciação Científica}}\\[0.5cm]
+    \textsc{\textbf{\large Relatório Final}}\\[0.5cm]
+    
+    \vspace{4cm}
+    
+    \rule{\linewidth}{0.5mm}\\[0.4cm]
+    {\huge \textbf{Desigualdades de Clarkson}}
+    \rule{\linewidth}{0.5mm}\\[1.0cm]
+    
+    \vspace{1.0cm}
+    
+    \textbf{\Large{Universidade de São Paulo}}\\[0.2cm]
+    \textbf{\large{Instituto de Ciências Matemáticas e Computação}}
+    \vspace{4cm}
+    
+    \begin{flushright}
+        \begin{tabular}{@{}ll@{}}
+            \hspace{1cm}\textbf{\large{Aluno:}} & \textbf{\large{Lucas Giraldi Almeida Coimbra}}\\
+            \hspace{1cm}\textbf{\large{Orientador:}} & \textbf{\large{Éder Rítis Aragão Costa}}\\
+            \end{tabular}
+    \end{flushright}
+    
+    \vfill
+    \Large{Agosto de 2024}\\[0.2cm]
+    \Large{São Carlos}
+\end{titlepage}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Teoria da Medida e Espaços \texorpdfstring{$L^p$}{Lp}}
+
+O primeiro passo para o estudo das desigualdades de Clarkson é a construção de alguns conceitos de teoria da medida.
+
+\subsection{O problema da medida em \texorpdfstring{$\mathbb{R}^n$}{Rn}}
+
+Considere a família $\mathcal{P}(\mathbb{R}^n)$ de todos os subconjuntos de $\mathbb{R}^n$. Se $\{a_i\}_{i = 1}^n$ e $\{b_i\}_{i = 1}^n$ são conjuntos em $\mathbb{R}$ tais que $a_i < b_i$ para todo $i = 1, \dots, n$, então podemos definir $$\ell\left(\prod_{i = 1}^n [a_i, b_i]\right) = \prod_{i = 1}^n |b_i - a_i|$$ como o \textit{volume} do $n$-retângulo dado pelo cartesiano acima. O que procuramos a seguir é uma função $\ell \colon \mathcal{P}(\mathbb{R}^n) \to [0, \infty]$ que estenda de maneira ``minimamente razoável'' o volume de $n$-retângulos em $\mathbb{R}^n$. Com ``minimamente razoável'', queremos dizer que a nossa esperança é de que: \begin{itemize}
+    \item se $x \in \mathbb{R}^n$ e $A \subset \mathbb{R}^n$, então $$\ell(A + x) = \ell(A);$$
+    \item se $\{A_i\}_{i = 1}^n \subset \mathcal{P}(\mathbb{R}^n)$ é tal que $A_i \cap A_j = \emptyset$ para $i \neq j$, então $$\ell\left(\bigcup_{i = 1}^\infty A_i\right) = \sum_{i = 1}^\infty \ell(A_i).$$ 
+\end{itemize}
+O texto produzido aqui pode ser de cunho acadêmico, mas o que seria de nós, autores, se não ensinássemos alguma coisa sobre a vida fora da matemática? Nossa primeira lição, portanto, é que esperança não serve de nada. Provaremos isso mostrando que tal extensão $\ell$ não pode existir. Para cumprir tal tarefa, definimos uma relação: se $x, y \in \mathbb{R}^n$ escrevemos $$x \sim y \quad \text{se, e somente se,} \quad x - y \in \mathbb{Q}^n.$$
+
+\begin{proposition}
+    A relação definida acima é de equivalência.
+\end{proposition}
+\begin{proof}
+    De fato, \begin{itemize}
+        \item a relação é simétrica, já que $x - x = 0 \in \mathbb{Q}^n$;
+        \item a relação é reflexiva, já que se $x - y \in \mathbb{Q}^n$, então $- (x - y) \in \mathbb{Q}^n$, e $-(x-y) = y-x$;
+        \item a relação é transitiva, já que se $x - y, y - z \in \mathbb{Q}^n$, então $x - z = (x - y) - (y - z) \in \mathbb{Q}^n$.
+    \end{itemize}
+\end{proof}
+
+\nocite{*}
+\printbibliography
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
