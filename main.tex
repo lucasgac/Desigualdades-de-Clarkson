@@ -78,6 +78,9 @@
 \DeclareMathOperator{\gyr}{gyr}
 \DeclareMathOperator{\arctanh}{arctanh}
 \DeclareMathOperator{\Log}{Log}
+\DeclareMathOperator{\ArithmeticMod}{mod}
+
+\newcommand{\modulus}[1]{\phantom{.}(\ArithmeticMod\phantom{.}#1)}
 
 \newcommand{\Mod}[1]{$\module_{#1}$}
 \newcommand{\Chain}[1]{$\chain(#1)$}
@@ -128,7 +131,7 @@ O primeiro passo para o estudo das desigualdades de Clarkson é a construção d
 
 \subsection{O problema da medida em \texorpdfstring{$\mathbb{R}^n$}{Rn}}
 
-Considere a família $\mathcal{P}(\mathbb{R}^n)$ de todos os subconjuntos de $\mathbb{R}^n$. Se $\{a_i\}_{i = 1}^n$ e $\{b_i\}_{i = 1}^n$ são conjuntos em $\mathbb{R}$ tais que $a_i < b_i$ para todo $i = 1, \dots, n$, então podemos definir $$\ell\left(\prod_{i = 1}^n [a_i, b_i]\right) = \prod_{i = 1}^n |b_i - a_i|$$ como o \textit{volume} do $n$-retângulo dado pelo cartesiano acima. O que procuramos a seguir é uma função $\ell \colon \mathcal{P}(\mathbb{R}^n) \to [0, \infty]$ que estenda de maneira ``minimamente razoável'' o volume de $n$-retângulos em $\mathbb{R}^n$. Com ``minimamente razoável'', queremos dizer que a nossa esperança é de que: \begin{itemize}
+Considere a família $\mathcal{P}(\mathbb{R}^n)$ de todos os subconjuntos de $\mathbb{R}^n$. Se $\{a_i\}_{i = 1}^n$ e $\{b_i\}_{i = 1}^n$ são conjuntos em $\mathbb{R}$ tais que $a_i < b_i$ para todo $i = 1, \dots, n$, então podemos definir $$\ell\left(\prod_{i = 1}^n [a_i, b_i)\right) = \prod_{i = 1}^n |b_i - a_i|$$ como o \textit{volume} do $n$-retângulo dado pelo cartesiano acima. O que procuramos a seguir é uma função $\ell \colon \mathcal{P}(\mathbb{R}^n) \to [0, \infty]$ que estenda de maneira ``minimamente razoável'' o volume de $n$-retângulos em $\mathbb{R}^n$. Com ``minimamente razoável'', queremos dizer que a nossa esperança é de que: \begin{itemize}
     \item se $x \in \mathbb{R}^n$ e $A \subset \mathbb{R}^n$, então $$\ell(A + x) = \ell(A);$$
     \item se $\{A_i\}_{i = 1}^n \subset \mathcal{P}(\mathbb{R}^n)$ é tal que $A_i \cap A_j = \emptyset$ para $i \neq j$, então $$\ell\left(\bigcup_{i = 1}^\infty A_i\right) = \sum_{i = 1}^\infty \ell(A_i).$$ 
 \end{itemize}
@@ -145,38 +148,38 @@ O texto produzido aqui pode ser de cunho acadêmico, mas o que seria de nós, au
     \end{itemize}
 \end{proof}
 
+Dado $x \in \mathbb{R}^n$, denotamos sua classe de equivalência sob a relação definida acima por $[x]$. Definimos $\{x\} \in [0,1)^n$ como o vetor que, em cada coordenada, possui a parte fracionária da respectiva entrada de $x$. Como $x - \{x\} \in \mathbb{Z}^n$, então $\{x\} \sim x$. Dessa forma podemos, utilizando o axioma da escolha, construir um conjunto $I \subset [0,1)$ que possui precisamente um elemento para representar cada classe de equivalência de $\sim$. O próximo passo então é definir, para cada $x \in \mathbb{Q}^n$, um conjunto $$I_x = \{y + x \modulus{1} \mid y \in I\}$$ e supor que a função $\ell$ procurada de fato existe, para chegarmos em uma contradição.
+
+\begin{proposition}
+    Para cada $x \in (\mathbb{Q} \cap [0,1))^n$, vale que $\ell(I_x) = \ell(I)$.
+\end{proposition}
+\begin{proof}
+    Para provarmos a proposição, iremos particionar $I_x$ em $2^n$ pedaços. Para cada $i = 0, \dots, 2^n - 1$ definimos $e_i$ como sendo o vetor que contém, da esquerda para a direita em cada coordenada, a representação em base $2$ do número $i$. Definimos então $V_i = [0,1)^n + e_i$. Note que $$[0,2)^n = \bigsqcup_{i = 1}^{2^n} V_i$$ e portanto, definindo $U_i = (I + x) \cap V_i$, temos $$I + x = \bigsqcup_{i = 1}^{2^n} U_i.$$ O objetivo agora é provar que $$I_x = \bigsqcup_{i = 1}^{2^n} U_i - e_i.$$ Primeiro, note que a união é disjunta, afinal, se $x \in (U_i - e_i) \cap (U_j - e_j)$ para $i \neq j$, então $x = v_i - e_i = v_j - e_j$ para $v_i \in U_i$ e $v_j \in U_j$. Dessa maneira, $(v_i - x) = (v_j - x) + (e_i - e_j)$ e portanto $v_i - x \sim v_j - x$. Acontece, porém, que $v_i, v_j \in I+x$, portanto $v_i - x, v_j - x \in I$ e, como estes são equivalentes sob a relação definida, obrigatoriamente são iguais, da onde segue que $v_i = v_j$ e assim $v_i - e_i = v_i - e_j$, assim $e_i = e_j$ e portanto $i = j$, o que é um absurdo.
+
+    Agora, provamos a igualdade desejada. Se $z \in I_x$, então existe $y \in I$ tal que $z = y + x \modulus{1}$. Tal $y$ é único, afinal, se existissem $y_1$ e $y_2$ satisfazendo a igualdade, então teríamos $y_1 \sim y_2$ com ambos em $I$, o que é um absurdo. Sabemos ainda que existe $i = 0, \dots, 2^n - 1$ com $y - e_i \in [0,1)^n$, ou seja, $y - e_i$ é a redução de $y$ módulo $1$, ou seja, $y - e_i = z - x$. Note agora que $y + x \in U_i$, afinal, $y + x$ pertence a $I + x$ e $y + x - e_i = z \in I_x \subset [0,1)^n$, assim $y + x \in V_i$. Dessa forma, $z \in U_i - e_i$, assim $$I_x \subset \bigsqcup_{i = 1}^{2^n} U_i - e_i.$$
+
+    Para a outra inclusão, se $z \in U_j - e_j$ para algum $j$, então $z \in [0,1)^n$, afinal, $z = u - e_j$ para algum $u \in U_j$ e, como $u \in V_j = [0,1)^n + e_j$, segue que $u - e_j = z \in [0,1)^n$. Mais ainda, $u \in U_j$, ou seja, $u \in I + x$ e assim $u = y + x$ para $y \in I$, assim $z = y + x \modulus{1}$, portanto $z \in I_x$, da onde segue que $$I_x \supset \bigsqcup_{i = 1}^{2^n} U_i - e_i.$$
+
+    Com a igualdade provada, o resultado segue, afinal, $$\ell(I_x) = \ell\left(\bigsqcup_{i = 1}^{2^n} U_i - e_i\right) = \sum_{i = 1}^{2^n} \ell(U_i - e_i) = \sum_{i = 1}^{2^n} \ell(U_i) = \ell\left(\bigsqcup_{i = 1}^{2^n} U_i\right) = \ell(I + x) = \ell(I).$$
+\end{proof}
+
+Antes de prosseguirmos, precisamos clarificar uma questão de notação: $x = y \modulus{k}$ significa que $x$ é o resto da divisão de $y$ por $k$, enquanto $x \equiv y \modulus{k}$ significa que $x$ e $y$ possuem o mesmo resto quando divididos por $k$.
+
+\begin{proposition}\label{prop3}
+    Se $Q = \mathbb{Q}^n \cap [0,1)^n$, então vale a igualdade $$[0,1)^n = \bigsqcup_{x \in Q} I_x.$$
+\end{proposition}
+\begin{proof}
+    Uma das inclusões é simples, afinal, $I_x \subset [0,1)^n$ para todo $x \in Q$. Para a outra inclusão, se $z \in [0,1)^n$, então tome $y$ como sendo o único representante de $[z]$ em $I$. Sabemos que $z = y + x$ para algum $\mathbb{Q}^n$. Mais do que isso, se $k = x \modulus{1}$, então $k \in Q$ e $z = y + k \modulus{1}$, portanto $z \in I_k$ e assim $$[0,1)^n = \bigcup_{x \in Q} I_x.$$
+    
+    Resta agora provarmos que essa união é disjunta. Se $z \in I_x \cap I_y$ com $x \neq y$, então $z = i_1 + p$ e $z = i_2 + q$ com $i_1, i_2 \in I$, $p, q \in \mathbb{Q}^n$, $x = p \modulus{1}$ e $y = q \modulus{1}$. Dessa forma, $i_1 - i_2 = q - p \in \mathbb{Q}^n$, portanto $i_1 \sim i_2$ e assim $i_1 = i_2$ pois ambos estão em $I$, da onde segue que $q - p = 0$ e portanto $p = q$, assim, como $x = p \modulus{1}$ e $y = q \modulus{1}$, então $x = y$, o que é um absurdo.
+\end{proof}
+
+Com estas duas proposições, podemos concluir o absurdo. Pela Proposição \ref{prop3} temos $$\ell([0,1)^n) = \ell\left(\bigsqcup_{x \in Q} I_x\right) = \sum_{x \in Q} \ell(I_x) = \sum_{x \in Q} \ell(I)$$ e, como $\ell([0,1)^n) = 1$, a igualdade é um absurdo, afinal, se $\ell(I) > 0$ então a soma explode ao infinito, e se $\ell(I) = 0$ então a soma é nula. Todo esse absurdo foi gerado por uma simples suposição: existe esse mapa $\ell \colon \mathcal{P}(\mathbb{R}^n) \to [0, \infty]$. Provada a sua não-existência, a pergunta que nos resta é: será que é possível estender a noção de volume para uma classe menor de subconjuntos?
+
+\subsection{Álgebras, medidas e Lebesgue}
+
+Dado um conjunto $\Omega$, uma $\sigma$-álgebra em $\Omega$
+
 \nocite{*}
 \printbibliography
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
