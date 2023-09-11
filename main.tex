@@ -178,7 +178,27 @@ Com estas duas proposições, podemos concluir o absurdo. Pela Proposição \ref
 
 \subsection{Álgebras, medidas e Lebesgue}
 
-Dado um conjunto $\Omega$, uma $\sigma$-álgebra em $\Omega$
+Dado um conjunto $\Omega$, uma \textit{$\sigma$-álgebra} em $\Omega$ é uma família $\mathcal{F}$ que satisfaz algumas condições: \begin{itemize}
+    \item $\Omega \in \mathcal{F}$;
+    \item se $A \in \mathcal{F}$, então $\Omega \setminus A \in \mathcal{F}$;
+    \item se $\{A_i\}_{i = 1}^\infty \subset \mathcal{F}$, então $$\bigcup_{i = 1}^\infty A_i \in \mathcal{F}.$$
+\end{itemize}
+
+Teoria da medida compartilha muito de suas bases com a teoria de probabilidade (que se resume, em certo sentido, à teoria de medidas finitas), e dessa forma podemos pensar em $\sigma$-álgebras como objetos extremamente probabilísticos. Essa família de subconjuntos de $\Omega$ representa a família de todos os eventos dos quais queremos calcular a probabilidade de acontecimento. Com essa visão, as propriedades se traduzem para: \begin{itemize}
+    \item o evento ``qualquer coisa acontece'' existe e podemos calcular sua probabilidade;
+    \item se podemos calcular a probabilidade de um evento $A$ acontecer, então podemos calcular a probabilidade de $A$ não acontecer, ou seja, a probabilidade de $\Omega \setminus A$ acontecer;
+    \item se é possível calcular a probabilidade de cada $A_i$ acontecer para cada $i \in \mathbb{Z}_{>0}$, então podemos calcular a probabilidade de acontecer ao menos um dentre todos esses eventos, ou seja, a probabilidade de $$\bigcup_{i = 1}^\infty A_i$$ acontecer.
+\end{itemize}
+
+Elementos de uma $\sigma$-álgebra $\mathcal{F}$ são chamados de \textit{conjuntos $\mathcal{F}$-mensuráveis} ou apenas \textit{$\mathcal{F}$-mensuráveis}. O nome da $\sigma$-álgebra pode ser e será omitido quando esta for clara a partir do contexto. O próximo passo agora é arranjar uma maneira de calcular probabilidades. Se $\mathcal{F}$ é uma $\sigma$-álgebra em $\Omega$, dizemos que o par $(\Omega, \mathcal{F})$ é um \textit{espaço mensurável}. Uma \textit{medida} em $(\Omega, \mathcal{F})$ é um mapa $\mu \colon \mathcal{F} \to [0, \infty]$ que é $\sigma$-aditivo, ou seja, tal que $$\mu\left(\bigsqcup_{i = 1}^\infty A_i\right) = \sum_{i = 1}^\infty \mu(A_i)$$ para qualquer coleção $\{A_i\}_{i = 1}^\infty$ de mensuráveis disjuntos dois a dois. A tripla $(\Omega, \mathcal{F}, \mu)$ é dita um \textit{espaço de medida}. Temos ainda os casos especiais: \begin{itemize}
+    \item se $\mu(\Omega) < \infty$, dizemos que $\mu$ é \textit{finita} e $(\Omega, \mathcal{F}, \mu)$ é um \textit{espaço de medida finita};
+    \item se $\mu(\Omega) = 1$, dizemos que $\mu$ é uma \textit{medida de probabilidade} e $(\Omega, \mathcal{F}, \mu)$ é um \textit{espaço de probabilidade}. Nesse caso, costumamos trocar a notação $\mu$ por $\mathbb{P}$;
+    \item se existe uma família $\{A_i\}_{i = 1}^\infty$ de mensuráveis tais que $\mu(A_i) < \infty$ para todo $i$ e $$\Omega = \bigcup_{i = 1}^\infty A_i,$$ dizemos que $\mu$ é \textit{$\sigma$-finita} e $(\Omega, \mathcal{F}, \mu)$ é um \textit{espaço de medida $\sigma$-finita}.
+\end{itemize}
+
+Existem diversos exemplos de espaços mensuráveis e de medida. Esse texto tem o objetivo de fazer as construções necessárias apenas para ter os pré-requisitos durante o estudo das desigualdades de Clarkson. Dessa maneira, vamos ignorar alguns exemplos que são costumeiramente feitos e focar logo nos dois mais importantes.
+
+Se $S \subset \mathcal{P}(\Omega)$ então, como $\mathcal{P}(\Omega)$ é claramente uma $\sigma$-álgebra, a família $\mathcal{A}$ de todas as $\sigma$-álgebras contendo $S$ é não vazia. Dessa maneira, podemos definir $$\sigma(S) = \bigcap_{A \in \mathcal{A}} A.$$ Esse conjunto é também uma $\sigma$-álgebra, chamada de \textit{$\sigma$-álgebra gerada por $S$}. Supondo agora que $\Omega$ é topológico e $\tau$ é o conjunto de seus abertos, chamamos $\sigma(\tau)$ de \textit{$\sigma$-álgebra de Borel} em $\Omega$.
 
 \nocite{*}
 \printbibliography

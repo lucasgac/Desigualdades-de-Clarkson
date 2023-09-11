@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber main"] 1694334366 "main.bcf" "main.bbl" "main" 1694334413 0
+["biber main"] 1694334366 "main.bcf" "main.bbl" "main" 1694389030 0
   "./bib.bib" 1694334365 189 d36f9e6c0775c075a00cdf915ac67ae3 ""
-  "main.bcf" 1694334412 107764 a06ae212c44268ec2d8abc528a7916fc "pdflatex"
+  "main.bcf" 1694389029 107764 a06ae212c44268ec2d8abc528a7916fc "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1694334410 "c:/Users/gisel/Desktop/Desigualdades-de-Clarkson/main.tex" "main.pdf" "main" 1694334413 0
+["pdflatex"] 1694389026 "c:/Users/gisel/Desktop/Desigualdades-de-Clarkson/main.tex" "main.pdf" "main" 1694389030 0
   "C:/Users/gisel/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1693838563 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/gisel/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1000.pk" 1693838576 25420 0391da6290394fd377958dcdd78b912b ""
   "C:/Users/gisel/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1200.pk" 1693838589 31952 751bfde2704ed5f6f1909427906888de ""
@@ -241,13 +241,13 @@
   "C:/Users/gisel/AppData/Local/Programs/MiKTeX/tex/latex/tools/xspace.sty" 1686255640 4545 9f5ea23ab1c91476c42749893f790666 ""
   "C:/Users/gisel/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/gisel/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656236890 56148 51a9a8571c07b9921892ae11063ae853 ""
-  "c:/Users/gisel/Desktop/Desigualdades-de-Clarkson/main.tex" 1694334409 11851 b314a07a733b4519681c688dafc3f372 ""
-  "main.aux" 1694334412 1341 9d422e3ef583b7128d061f9a96c140d4 "pdflatex"
+  "c:/Users/gisel/Desktop/Desigualdades-de-Clarkson/main.tex" 1694389025 15666 a72cd1e9968bce36073ab60b75566f22 ""
+  "main.aux" 1694389029 1341 bf2dd78eb44f0c8b16511e3b349ef4ca "pdflatex"
   "main.bbl" 1694334374 1129 230881ca986e27b90b22d8e42348b12e "biber main"
-  "main.out" 1694334412 617 a098f91a055ab0254e9b26052edff8a1 "pdflatex"
-  "main.run.xml" 1694334412 2301 7b8f8c29d436b67db3cb3c010012f29b "pdflatex"
-  "main.tex" 1694334409 11851 b314a07a733b4519681c688dafc3f372 ""
-  "main.toc" 1694334412 322 f30eea559e757fd6c550a47ac87a9137 "pdflatex"
+  "main.out" 1694389029 617 a098f91a055ab0254e9b26052edff8a1 "pdflatex"
+  "main.run.xml" 1694389029 2301 7b8f8c29d436b67db3cb3c010012f29b "pdflatex"
+  "main.tex" 1694389025 15666 a72cd1e9968bce36073ab60b75566f22 ""
+  "main.toc" 1694389029 322 f30eea559e757fd6c550a47ac87a9137 "pdflatex"
   (generated)
   "main.aux"
   "main.bcf"
